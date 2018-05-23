@@ -1,0 +1,22 @@
+{##
+ # Header (Agile Universal)
+ #}
+
+<!-- Agile Script Integrations -->
+<script id="_agile_min_js" async type="text/javascript" src="https://{{this.getAgileDomain()}}.agilecrm.com/stats/min/agile-min.js"> </script>
+<script type="text/javascript" >
+var Agile_API = Agile_API || {}; Agile_API.on_after_load = function(){
+_agile.set_account('{{this.getAgileRestApiKey()}}', '{{this.getAgileDomain()}}');
+
+{% if this.isWebstats() %}
+_agile.set_email('{{ this.getEmail() }}');
+_agile.track_page_view();
+{% endif %}
+
+{% if this.isWebrules() %}
+_agile_execute_web_rules();
+{% endif %}
+
+};
+</script>
+<!-- End Agile Script Integrations -->
